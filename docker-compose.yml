@@ -6,6 +6,9 @@ services:
             context: .
         volumes:
             -   ./:/var/www/html
+        depends_on:
+            -   db
+            -   redis
 
     web:
         image: nginx:latest
@@ -17,6 +20,7 @@ services:
             -   "8080:80"
         depends_on:
             -   db
+            -   redis
     db:
         image: mysql:latest
         environment:
