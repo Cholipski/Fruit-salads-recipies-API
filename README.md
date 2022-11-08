@@ -51,7 +51,7 @@
 ### Metoda: ` POST `
 **URL** : `/api/v1/salad_recipes`
 
-**Wymagane dane** :
+**Wymagane dane**:
 ```json
 {
     "name": "[name]",
@@ -87,13 +87,13 @@ Salad recipe was added successfully
 ---
 
 ### Metoda: ` GET `
-**URL** : `/api/v1/salad_recipes`
+**URL**: `/api/v1/salad_recipes`
 
 #### Odpowiedź pozytywna:
 
 **Status** : `200 OK`
 
-**Zawartość** :
+**Zawartość**:
 ```json
 {
     {
@@ -123,13 +123,13 @@ Salad recipe was added successfully
 ---
 
 ### Metoda: ` GET `
-**URL** : `/api/v1/salad_recipes/{id}`
+**URL**: `/api/v1/salad_recipes/{id}`
 
 #### Odpowiedź pozytywna:
 
 **Status** : `200 OK`
 
-**Zawartość** :
+**Zawartość**:
 ```json
 {
     "id": 3,
@@ -173,13 +173,13 @@ Salad recipe was added successfully
 ---
 
 ### Metoda: ` DELETE `
-**URL** : `/api/v1/salad_recipes/{id}`
+**URL**: `/api/v1/salad_recipes/{id}`
 
 #### Odpowiedź pozytywna:
 
-**Status** : `200 OK`
+**Status**: `200 OK`
 
-**Zawartość** :
+**Zawartość**:
 ```json
 Salad recipe {id} was deleted successfully
 ```
@@ -187,9 +187,9 @@ Salad recipe {id} was deleted successfully
 ---
 
 ### Metoda: ` PUT `
-**URL** : `/api/v1/salad_recipes/{id}`
+**URL**: `/api/v1/salad_recipes/{id}`
 
-**Wymagane dane** :
+**Wymagane dane**:
 ```json
 {
     "name": "[name]",
@@ -211,11 +211,11 @@ Salad recipe {id} was deleted successfully
 - fruits.weight
 #### Odpowiedź pozytywna:
 
-**Warunek wystąpienia** : Przepis został pomyślnie zaktualizowany
+**Warunek wystąpienia**: Przepis został pomyślnie zaktualizowany
 
-**Status** : `200 OK`
+**Status**: `200 OK`
 
-**Zawartość** :
+**Zawartość**:
 ```json
 Salad recipe was updated successfully
 ```
