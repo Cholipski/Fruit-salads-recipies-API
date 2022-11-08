@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\v1\FruitController;
+use App\Http\Controllers\Api\v1\SaladController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,7 @@ Route::prefix('v1')->group(function (){
     Route::resource('fruits', FruitController::class)->only([
         'index', 'store'
     ]);
+    Route::resource('salad_recipes', SaladController::class);
     }
 );
 
