@@ -81,7 +81,10 @@
 
 **Zawartość** :
 ```json
-Salad recipe was added successfully
+{
+    "message": "Salad recipe was added successfully"
+}
+
 ```
 
 ---
@@ -181,7 +184,10 @@ Salad recipe was added successfully
 
 **Zawartość**:
 ```json
-Salad recipe {id} was deleted successfully
+{
+    "message": "Salad recipe {id} was deleted successfully"
+}
+
 ```
 
 ---
@@ -217,7 +223,10 @@ Salad recipe {id} was deleted successfully
 
 **Zawartość**:
 ```json
-Salad recipe was updated successfully
+{
+    "message": "Salad recipe was updated successfully"
+}
+
 ```
 
 ---

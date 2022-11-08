@@ -52,7 +52,7 @@ class SaladController extends Controller
             SaladRecipesServices::calculateNutrients($recipe);
             $this->updateRedisValue($recipe->id,"create");
 
-            return response("Salad recipe was added successfully",201);
+            return response(["message" => "Salad recipe was added successfully"],201);
         }catch (\Exception $e){
             return response($e,400);
         }
@@ -71,7 +71,7 @@ class SaladController extends Controller
             SaladRecipesServices::calculateNutrients($recipe);
             $this->updateRedisValue($id,"update");
 
-            return response("Salad recipe was updated successfully",200);
+            return response(["message" => "Salad recipe was updated successfully"],200);
 
         }catch (\Exception $e){
             return response($e,400);
@@ -85,10 +85,10 @@ class SaladController extends Controller
             $saladRecipe->fruits()->detach();
             $saladRecipe->delete();
             $this->updateRedisValue($id,"delete");
-            return response("Salad recipe ".$id." was deleted successfully", 200);
+            return response(["message" => "Salad recipe ".$id." was deleted successfully"], 200);
         }
         else {
-            return response("Salad recipe ".$id." does not exist", 400);
+            return response(["message" => "Salad recipe ".$id." does not exist"], 400);
         }
     }
 
