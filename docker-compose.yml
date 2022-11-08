@@ -35,6 +35,11 @@ services:
         image: redis:latest
         volumes:
             -   redisdata:/data
+    phpmyadmin:
+        image: phpmyadmin
+        restart: always
+        ports:
+            -   "8000:80"
 volumes:
     mysqldata: ~
     redisdata: ~
