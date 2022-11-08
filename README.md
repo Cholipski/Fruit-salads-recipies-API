@@ -1,66 +1,223 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Fruit salads recipes API
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Instalacja
 
-## About Laravel
+1. Skopiować plik `.env.example` oraz usunąć `.example`
+2. Uzupełnić plik `.env` o wymagane dane
+3. Uruchomić polecenie `docker-compose up --build`
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Uruchomienie powyższego polecenia, skonfiguruje aplikację poprzez zainstalowanie zależności `composer` oraz uruchomi migrację wraz z importem podstawowych danych z pliku json
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Lista endpointów
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+### Metoda: ` GET `
+**URL** : `/api/v1/fruits`
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### Odpowiedź pozytywna:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+**Status** : `200 OK`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Zawartość** :
+```json
+[
+    {
+        "id": 1,
+        "name": "Apple",
+        "nutrients": {
+            "carbohydrates": 11.4,
+            "protein": 0.3,
+            "fat": 0.4,
+            "calories": 52,
+            "sugar": 10.3
+        }
+    },
+    {
+        "id": 2,
+        "name": "Apricot",
+        "nutrients": {
+            "carbohydrates": 3.9,
+            "protein": 0.5,
+            "fat": 0.1,
+            "calories": 15,
+            "sugar": 3.2
+        }
+    },
+]
 
-## Laravel Sponsors
+```
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Metoda: ` POST `
+**URL** : `/api/v1/salad_recipes`
 
-### Premium Partners
+**Wymagane dane** :
+```json
+{
+    "name": "[name]",
+    "description": "[description]",
+    "fruits": [
+        {
+            "fruit_id": "[id]",
+            "weight": "[weight]"
+        },
+        ...
+    ]
+}
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### Pola wymagane:
+- name
+- description
+- fruits (array minimum 2 elementy)
+- fruits.fruit_id
+- fruits.weight
 
-## Contributing
+#### Odpowiedź pozytywna:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Warunek wystąpienia** : Przepis został pomyślnie utworzony
 
-## Code of Conduct
+**Status** : `201 Created`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**Zawartość** :
+```json
+Salad recipe was added successfully
+```
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Metoda: ` GET `
+**URL** : `/api/v1/salad_recipes`
 
-## License
+#### Odpowiedź pozytywna:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Status** : `200 OK`
+
+**Zawartość** :
+```json
+{
+    {
+      "id": 1,
+      "name": "FIRST",
+      "fruits": [
+        "Apricot",
+        "Banana"
+      ],
+      "total_weight": 35,
+      "total_calories": 111
+    },
+    {
+        "id": 1,
+        "name": "SECOND",
+        "fruits": [
+            "Apricot",
+            "Banana"
+        ],
+        "total_weight": 35,
+        "total_calories": 111
+    },
+    ...
+}
+
+```
+---
+
+### Metoda: ` GET `
+**URL** : `/api/v1/salad_recipes/{id}`
+
+#### Odpowiedź pozytywna:
+
+**Status** : `200 OK`
+
+**Zawartość** :
+```json
+{
+    "id": 3,
+    "name": "NAME",
+    "description": "DESCRIPTION",
+    "total_nutrients": {
+        "carbohydrates": 6.8,
+        "protein": 0.32,
+        "fat": 0.06,
+        "calories": 29.55,
+        "sugar": 5.32
+    },
+    "total_weight": 35,
+    "ingredients": [
+        {
+            "name": "Apricot",
+            "weight": 5,
+            "nutrients": {
+                "carbohydrates": 3.9,
+                "protein": 0.5,
+                "fat": 0.1,
+                "calories": 15,
+                "sugar": 3.2
+            }
+        },
+        {
+            "name": "Banana",
+            "weight": 30,
+            "nutrients": {
+                "carbohydrates": 22,
+                "protein": 1,
+                "fat": 0.2,
+                "calories": 96,
+                "sugar": 17.2
+            }
+        }
+    ]
+}
+
+```
+---
+
+### Metoda: ` DELETE `
+**URL** : `/api/v1/salad_recipes/{id}`
+
+#### Odpowiedź pozytywna:
+
+**Status** : `200 OK`
+
+**Zawartość** :
+```json
+Salad recipe {id} was deleted successfully
+```
+
+---
+
+### Metoda: ` PUT `
+**URL** : `/api/v1/salad_recipes/{id}`
+
+**Wymagane dane** :
+```json
+{
+    "name": "[name]",
+    "description": "[description]",
+    "fruits": [
+        {
+            "fruit_id": "[id]",
+            "weight": "[weight]"
+        },
+        ...
+    ]
+}
+```
+### Pola wymagane:
+- name
+- description
+- fruits (array minimum 2 elementy)
+- fruits.fruit_id
+- fruits.weight
+#### Odpowiedź pozytywna:
+
+**Warunek wystąpienia** : Przepis został pomyślnie zaktualizowany
+
+**Status** : `200 OK`
+
+**Zawartość** :
+```json
+Salad recipe was updated successfully
+```
+
+---
