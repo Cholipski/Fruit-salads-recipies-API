@@ -2,31 +2,28 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\FruitCollection;
 use App\Models\Fruit;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 class FruitController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function index(){
+        $cached = Redis::get('Fruits');
+        if(isset($cached)){
+            $fruits = json_decode($cached, false);
+            return response()->json($fruits);
+        }
+        else{
+            $fruits = new FruitCollection(Fruit::all());
+            Redis::set('Fruits',json_encode($fruits));
+            return response()->json($fruits);
+        }
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
+    public function store(){
         //
     }
-
 }
