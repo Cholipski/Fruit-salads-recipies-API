@@ -22,7 +22,7 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 # Copy code to /var/www
 COPY --chown=www:www-data . /var/www
 USER www
-RUN /bin/sh -c composer install --optimize-autoloader --no-dev
+
 RUN chmod +x /var/www/.docker/entrypoint.sh
 
 ENTRYPOINT ["/var/www/.docker/entrypoint.sh"]

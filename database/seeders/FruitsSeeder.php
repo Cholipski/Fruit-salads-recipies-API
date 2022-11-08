@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Fruit;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class FruitsSeeder extends Seeder
@@ -16,8 +17,8 @@ class FruitsSeeder extends Seeder
      */
     public function run()
     {
-        $json = Storage::disk('local')->get('/json/fruits.json');
-        $fruits = json_decode($json, true);
+        $file = File::get(resource_path() . '/json/fruits.json');
+        $fruits = json_decode($file, true);
 
         foreach ($fruits as $fruit)
         {

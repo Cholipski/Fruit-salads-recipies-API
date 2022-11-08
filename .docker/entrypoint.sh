@@ -1,6 +1,6 @@
 #!/bin/sh
-
-cd /var/www
+composer install
+cd /var/www/html
 
 php artisan key:generate
 php artisan cache:clear
